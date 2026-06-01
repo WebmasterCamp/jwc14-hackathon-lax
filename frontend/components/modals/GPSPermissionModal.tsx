@@ -62,7 +62,7 @@ export default function GPSPermissionModal({ open, onAlwaysAllow, onWhileUsing, 
                   className="text-[17px] font-semibold leading-snug"
                   style={{ color: "#000", letterSpacing: "-0.2px" }}
                 >
-                  อนุญาต &ldquo;readdiva&rdquo; ใช้ตำแหน่งของคุณไหม?
+                  Allow &ldquo;readdiva&rdquo; to access your location?
                 </motion.h2>
 
                 {/* Body text */}
@@ -73,8 +73,8 @@ export default function GPSPermissionModal({ open, onAlwaysAllow, onWhileUsing, 
                   className="text-[13px] leading-relaxed"
                   style={{ color: "rgba(0,0,0,0.55)" }}
                 >
-                  แอปจะใช้ตำแหน่งของคุณเพื่อตรวจจับสถานที่อ่านหนังสือใกล้เคียง
-                  และแสดงพื้นที่บนแผนที่
+                  Used to detect nearby study spots and claim
+                  territory on the conquest map.
                 </motion.p>
               </div>
 
@@ -93,7 +93,7 @@ export default function GPSPermissionModal({ open, onAlwaysAllow, onWhileUsing, 
                            active:bg-black/10"
                 style={{ color: "#007AFF" }}
               >
-                อนุญาตครั้งเดียว
+                Allow Once
               </motion.button>
 
               {/* Separator */}
@@ -109,7 +109,7 @@ export default function GPSPermissionModal({ open, onAlwaysAllow, onWhileUsing, 
                            active:bg-black/10"
                 style={{ color: "#007AFF" }}
               >
-                อนุญาตในขณะที่ใช้งานแอพ
+                Allow While Using App
               </motion.button>
 
               {/* Separator */}
@@ -125,7 +125,7 @@ export default function GPSPermissionModal({ open, onAlwaysAllow, onWhileUsing, 
                            active:bg-black/10"
                 style={{ color: "#007AFF" }}
               >
-                ไม่อนุญาต
+                Don&apos;t Allow
               </motion.button>
             </div>
           </motion.div>
