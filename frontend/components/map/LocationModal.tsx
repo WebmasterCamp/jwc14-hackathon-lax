@@ -45,12 +45,12 @@ export default function LocationModal({ territory, open, onClose, onSync }: Prop
             animate={{ y: 0 }}
             exit={{ y: "100%" }}
             transition={{ type: "spring", stiffness: 340, damping: 32 }}
-            className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] z-50
+            className="fixed bottom-0 left-0 right-0 sm:left-1/2 sm:right-auto sm:-translate-x-1/2 sm:w-full sm:max-w-[430px] z-50
                        rounded-t-[28px] overflow-hidden"
             style={{
               background: "#12121E",
               border: "1px solid rgba(255,255,255,0.08)",
-              maxHeight: "80vh",
+              maxHeight: "85dvh",
             }}
           >
             {/* Handle */}
@@ -58,7 +58,7 @@ export default function LocationModal({ territory, open, onClose, onSync }: Prop
               <div className="w-10 h-1 rounded-full bg-white/20" />
             </div>
 
-            <div className="overflow-y-auto" style={{ maxHeight: "calc(80vh - 20px)" }}>
+            <div className="overflow-y-auto" style={{ maxHeight: "calc(85dvh - 20px)" }}>
               {/* Header */}
               <div className="flex items-start justify-between px-5 pt-2 pb-4">
                 <div className="flex-1">
@@ -154,7 +154,7 @@ export default function LocationModal({ territory, open, onClose, onSync }: Prop
               </div>
 
               {/* Sync Button */}
-              <div className="mx-5 mt-5 mb-6">
+              <div className="mx-5 mt-5" style={{ paddingBottom: "max(24px, env(safe-area-inset-bottom))" }}>
                 <motion.button
                   whileTap={{ scale: 0.97 }}
                   onClick={() => onSync(territory)}

@@ -10,9 +10,9 @@ interface Props {
 
 export default function MobileShell({ children, fullHeight = false }: Props) {
   return (
-    <div className="min-h-screen bg-app flex items-start justify-center">
-      {/* Constrain to mobile width on larger screens */}
-      <div className="relative w-full max-w-[430px] h-screen flex flex-col bg-[#08080F] overflow-hidden shadow-2xl">
+    <div className="h-dvh bg-[#08080F] sm:bg-app sm:flex sm:items-start sm:justify-center">
+      {/* Full-width on mobile, max-430px centered on desktop */}
+      <div className="relative w-full sm:max-w-[430px] h-dvh flex flex-col bg-[#08080F] overflow-hidden sm:shadow-2xl">
         {/* Page Content */}
         <main
           className={`flex-1 overflow-x-hidden ${
@@ -30,7 +30,7 @@ export default function MobileShell({ children, fullHeight = false }: Props) {
           {children}
         </main>
 
-        {/* Bottom Nav — fixed at bottom of shell */}
+        {/* Bottom Nav */}
         <div className="flex-shrink-0">
           <BottomNav />
         </div>

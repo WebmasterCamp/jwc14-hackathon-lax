@@ -17,8 +17,9 @@ export default function BottomNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="bottom-nav flex items-center justify-around h-16 px-2
-                    bg-bg-surface border-t border-bg-border">
+    <nav className="bottom-nav flex items-center justify-around px-2
+                    bg-bg-surface border-t border-bg-border"
+         style={{ height: "calc(64px + env(safe-area-inset-bottom, 0px))", paddingBottom: "env(safe-area-inset-bottom, 0px)" }}>
       {TABS.map(({ href, label, Icon }) => {
         const active = pathname === href;
         return (

@@ -79,8 +79,9 @@ export default function HomePage() {
       {/* Page content */}
       <div className="relative flex flex-col h-full">
         {/* ── Header overlay (floating above map) ─────────── */}
-        <div className="absolute top-0 left-0 right-0 z-30 px-4 pt-12 pb-3
-                        bg-gradient-to-b from-[#08080F] via-[#08080F]/70 to-transparent">
+        <div className="absolute top-0 left-0 right-0 z-30 px-4 pb-3
+                        bg-gradient-to-b from-[#08080F] via-[#08080F]/70 to-transparent"
+             style={{ paddingTop: "max(48px, env(safe-area-inset-top, 48px))" }}>
           <motion.div
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
