@@ -9,8 +9,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "readdiva — Read. Conquer. Repeat.",
-  description: "Turn your reading time into territory. Study at real Bangkok co-working spaces and conquer zones on the map.",
+  title: "readdiva",
+  description: "readdiva - แอปจับเวลาอ่านหนังสือ และแข่งขันยึดพื้นที่ในรูปแบบ gamification",
   keywords: ["study app", "gamification", "reading", "territory", "Bangkok", "co-working"],
   authors: [{ name: "readdiva team" }],
   manifest: "/manifest.json",
@@ -20,8 +20,8 @@ export const metadata: Metadata = {
     title: "readdiva",
   },
   openGraph: {
-    title: "readdiva — Read. Conquer. Repeat.",
-    description: "Turn your reading time into territory conquest.",
+    title: "readdiva",
+    description: "แอปจับเวลาอ่านหนังสือ และแข่งขันยึดพื้นที่ในรูปแบบ gamification",
     type: "website",
   },
 };

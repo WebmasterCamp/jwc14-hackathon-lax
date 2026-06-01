@@ -103,7 +103,7 @@ main {
 
 /* ─── Leaflet Overrides ──────────────────────────────────────────────────── */
 .leaflet-container {
-  background: #08080F !important;
+  background: #F0F0F0 !important;
   font-family: inherit !important;
 }
 

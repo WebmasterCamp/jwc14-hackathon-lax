@@ -12,13 +12,15 @@ export default function MobileShell({ children, fullHeight = false }: Props) {
   return (
     <div className="min-h-screen bg-app flex items-start justify-center">
       {/* Constrain to mobile width on larger screens */}
-      <div className="relative w-full max-w-[430px] min-h-screen flex flex-col bg-[#08080F] overflow-hidden shadow-2xl">
+      <div className="relative w-full max-w-[430px] h-screen flex flex-col bg-[#08080F] overflow-hidden shadow-2xl">
         {/* Page Content */}
         <main
-          className={`flex-1 overflow-y-auto overflow-x-hidden ${
-            fullHeight ? "pb-0" : "pb-16"
+          className={`flex-1 overflow-x-hidden ${
+            fullHeight
+              ? "overflow-hidden pb-0"
+              : "overflow-y-auto pb-16"
           }`}
-          style={{ scrollbarWidth: "none" }}
+          style={{ scrollbarWidth: "none", minHeight: 0 }}
         >
           <style jsx>{`
             main::-webkit-scrollbar {

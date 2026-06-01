@@ -12,11 +12,11 @@ const TerritoryMapInner = dynamic(
     ssr: false,
     loading: () => (
       <div className="w-full h-full flex items-center justify-center"
-        style={{ background: "#08080F" }}>
+        style={{ background: "#FFFFFF" }}>
         <div className="flex flex-col items-center gap-3">
           <div className="w-10 h-10 rounded-full border-2 border-t-transparent animate-spin"
             style={{ borderColor: "rgba(255,138,0,0.3)", borderTopColor: "#FF8A00" }} />
-          <span className="text-white/40 text-sm">Loading map…</span>
+          <span className="text-gray-500 text-sm">Loading map…</span>
         </div>
       </div>
     ),

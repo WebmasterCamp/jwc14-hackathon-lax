@@ -15,15 +15,6 @@ L.Icon.Default.mergeOptions({
   shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png",
 });
 
-// ─── Map center control ───────────────────────────────────────────────────────
-function FlyToCenter({ lat, lng, zoom }: { lat: number; lng: number; zoom: number }) {
-  const map = useMap();
-  useEffect(() => {
-    map.setView([lat, lng], zoom);
-  }, [lat, lng, zoom, map]);
-  return null;
-}
-
 // ─── Avatar Pin as DivIcon ────────────────────────────────────────────────────
 function createAvatarIcon(territory: Territory): L.DivIcon {
   const colors = TERRITORY_COLORS[territory.color];
@@ -62,9 +53,9 @@ function createUnclaimedIcon(): L.DivIcon {
     html: `
       <div style="
         width:28px; height:28px; border-radius:50%;
-        background:rgba(16,16,28,0.95);
-        border:2px solid rgba(255,255,255,0.25);
-        box-shadow:0 2px 8px rgba(0,0,0,0.5);
+        background:rgba(240,240,248,0.95);
+        border:2px solid rgba(0,0,0,0.2);
+        box-shadow:0 2px 8px rgba(0,0,0,0.25);
         display:flex; align-items:center; justify-content:center;
         font-size:0.9rem; cursor:pointer;
       ">📍</div>
@@ -88,13 +79,13 @@ export default function TerritoryMapInner({ territories, onSelect, selectedId }:
       center={[13.736, 100.523]}
       zoom={13}
       zoomControl={false}
-      style={{ height: "100%", width: "100%", background: "#08080F" }}
+      style={{ height: "100%", width: "100%", background: "#F0F0F0" }}
       minZoom={11}
       maxZoom={16}
     >
-      {/* Dark minimal tile layer */}
+      {/* Light minimal tile layer */}
       <TileLayer
-        url="https://{s}.basemaps.cartocdn.com/dark_matter_nolabels/{z}/{x}/{y}{r}.png"
+        url="https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png"
         attribution=""
         subdomains="abcd"
       />
@@ -122,9 +113,9 @@ export default function TerritoryMapInner({ territories, onSelect, selectedId }:
             key={`${territory.id}-${isSelected}`}
             data={geojson}
             style={() => ({
-              fillColor: territory.owner ? colors.fill : "rgba(255,255,255,0.04)",
-              fillOpacity: isSelected ? 0.85 : territory.owner ? 0.65 : 0.15,
-              color: territory.owner ? colors.border : "rgba(255,255,255,0.2)",
+              fillColor: territory.owner ? colors.fill : "rgba(0,0,0,0.06)",
+              fillOpacity: isSelected ? 0.85 : territory.owner ? 0.65 : 0.2,
+              color: territory.owner ? colors.border : "rgba(0,0,0,0.2)",
               weight: isSelected ? 2.5 : 1.5,
               opacity: isSelected ? 1 : 0.8,
               dashArray: territory.owner ? undefined : "4 4",

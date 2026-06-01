@@ -7,26 +7,29 @@ import MobileShell from "@/components/layout/MobileShell";
 import TerritoryMap from "@/components/map/TerritoryMap";
 import LocationModal from "@/components/map/LocationModal";
 import GPSPermissionModal from "@/components/modals/GPSPermissionModal";
+import SplashScreen from "@/components/modals/SplashScreen";
 import type { Territory } from "@/lib/types";
 import { CURRENT_USER, MOCK_NOTIFICATIONS } from "@/lib/mockData";
 
 export default function HomePage() {
+  const [showSplash, setShowSplash] = useState(true);
   const [gpsGranted, setGpsGranted] = useState<boolean | null>(null);
   const [showGPS, setShowGPS] = useState(false);
   const [selectedTerritory, setSelectedTerritory] = useState<Territory | null>(null);
   const [showLocationModal, setShowLocationModal] = useState(false);
   const [showNotifDot, setShowNotifDot] = useState(true);
 
-  // Show GPS modal on first visit
+  // Show GPS modal after splash
   useEffect(() => {
+    if (showSplash) return;
     const granted = localStorage.getItem("gps_granted");
     if (!granted) {
-      const t = setTimeout(() => setShowGPS(true), 800);
+      const t = setTimeout(() => setShowGPS(true), 400);
       return () => clearTimeout(t);
     } else {
       setGpsGranted(true);
     }
-  }, []);
+  }, [showSplash]);
 
   const handleGPSAllow = () => {
     localStorage.setItem("gps_granted", "true");
@@ -55,6 +58,9 @@ export default function HomePage() {
 
   return (
     <MobileShell fullHeight>
+      {/* Splash Screen */}
+      <SplashScreen onDone={() => setShowSplash(false)} />
+
       {/* GPS Modal */}
       <GPSPermissionModal
         open={showGPS}
@@ -71,7 +77,7 @@ export default function HomePage() {
       />
 
       {/* Page content */}
-      <div className="relative flex flex-col h-screen max-h-screen">
+      <div className="relative flex flex-col h-full">
         {/* ── Header overlay (floating above map) ─────────── */}
         <div className="absolute top-0 left-0 right-0 z-30 px-4 pt-12 pb-3
                         bg-gradient-to-b from-[#08080F] via-[#08080F]/70 to-transparent">
@@ -130,7 +136,7 @@ export default function HomePage() {
         </div>
 
         {/* ── Map (full screen) ────────────────────────────── */}
-        <div className="flex-1 relative">
+        <div className="flex-1 relative isolate">
           <TerritoryMap
             onSelectTerritory={handleSelectTerritory}
             selectedId={selectedTerritory?.id ?? null}
