@@ -1,0 +1,209 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── CSS Custom Properties ─────────────────────────────────────────────── */
+:root {
+  --bg-base:     #08080F;
+  --bg-surface:  #10101C;
+  --bg-raised:   #18182A;
+  --bg-elevated: #20203A;
+  --bg-border:   #2A2A42;
+  --orange:      #FF8A00;
+  --orange-light: #FFB347;
+  --purple:      #6C3FC4;
+  --indigo:      #5B60C8;
+  --lavender:    #A78BFA;
+  --text-primary: #FFFFFF;
+  --text-secondary: rgba(255,255,255,0.55);
+  --text-muted: rgba(255,255,255,0.35);
+}
+
+/* ─── Base Reset ─────────────────────────────────────────────────────────── */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  overflow-x: hidden;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-inter), "Inter", system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── App Shell ──────────────────────────────────────────────────────────── */
+#__next,
+main {
+  min-height: 100vh;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 138, 0, 0.3);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 138, 0, 0.5);
+}
+
+/* ─── Page Scrollable Area (inside mobile shell) ─────────────────────────── */
+.page-scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,138,0,0.3) transparent;
+}
+
+/* ─── Glass Card ─────────────────────────────────────────────────────────── */
+.glass {
+  background: rgba(16, 16, 28, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.glass-raised {
+  background: rgba(24, 24, 42, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+/* ─── Orange Glow ────────────────────────────────────────────────────────── */
+.glow-orange {
+  box-shadow: 0 0 20px rgba(255, 138, 0, 0.3), 0 0 40px rgba(255, 138, 0, 0.1);
+}
+
+.glow-purple {
+  box-shadow: 0 0 20px rgba(108, 63, 196, 0.3), 0 0 40px rgba(108, 63, 196, 0.1);
+}
+
+/* ─── Label Chip (small caps section title) ──────────────────────────────── */
+.section-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+/* ─── Leaflet Overrides ──────────────────────────────────────────────────── */
+.leaflet-container {
+  background: #08080F !important;
+  font-family: inherit !important;
+}
+
+.leaflet-control-attribution {
+  display: none !important;
+}
+
+.leaflet-control-zoom {
+  display: none !important;
+}
+
+.leaflet-popup-content-wrapper {
+  background: #10101C !important;
+  color: #fff !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5) !important;
+}
+
+.leaflet-popup-tip {
+  background: #10101C !important;
+}
+
+.leaflet-popup-close-button {
+  color: rgba(255,255,255,0.5) !important;
+}
+
+/* ─── Avatar Pin Marker ──────────────────────────────────────────────────── */
+.avatar-marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 2.5px solid rgba(255,255,255,0.9);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.5);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  font-size: 1.2rem;
+}
+
+.avatar-marker:hover {
+  transform: scale(1.15);
+}
+
+.unclaimed-marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(16, 16, 28, 0.9);
+  border: 2px solid rgba(255,255,255,0.3);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.unclaimed-marker:hover {
+  border-color: rgba(255,138,0,0.7);
+  transform: scale(1.1);
+}
+
+/* ─── Timer Ring ─────────────────────────────────────────────────────────── */
+.timer-ring {
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+
+/* ─── Stat Card Hover ────────────────────────────────────────────────────── */
+.stat-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.stat-card:hover {
+  transform: translateY(-2px);
+}
+
+/* ─── Active Tab Pill ────────────────────────────────────────────────────── */
+.tab-pill {
+  transition: all 0.2s ease;
+}
+
+/* ─── Bottom Nav ─────────────────────────────────────────────────────────── */
+.bottom-nav {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* ─── Selection ──────────────────────────────────────────────────────────── */
+::selection {
+  background: rgba(255, 138, 0, 0.3);
+}
+
+/* ─── Framer Motion optimizations ────────────────────────────────────────── */
+[data-framer-component-type] {
+  will-change: transform, opacity;
+}
+
+/* ─── Gradient Backgrounds ───────────────────────────────────────────────── */
+.bg-app {
+  background: radial-gradient(ellipse at top left, rgba(108,63,196,0.15) 0%, transparent 50%),
+              radial-gradient(ellipse at bottom right, rgba(91,96,200,0.1) 0%, transparent 50%),
+              #08080F;
+}

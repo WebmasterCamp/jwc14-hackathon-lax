@@ -1,0 +1,214 @@
+# Web Application Prototype (High-Fidelity MVP): readdiva.in.th
+
+**Role:** Expert Senior Full-Stack Developer, Frontend Engineer, UI/UX Designer, and Product Designer.
+
+---
+
+## 1. Main Concept
+A Gamification platform to encourage users to read more books by turning "reading time" into "power to conquer territories." Users will accumulate study time from various Sessions to increase their Influence score and conquer areas on the map. The person who goes to read in a specific Co-working space will accumulate time in that area, and if they are the user with the highest reading time, they will conquer that area. On the map, it will display that person's Icon, and the area will change color according to the color of the Top 1 user. The system must make users feel like they are building their own empire of knowledge through reading.
+
+## 2. Prototype Goals
+Create a system that can be used for:
+* Presenting to professors
+* Presenting to project committees
+* Hackathons
+* Pitching
+
+*Note: Even though there is no real Backend yet, the UI and UX must look like a Startup Product that is ready for actual launch.*
+
+## 3. Key Requirements
+* This system is a High-Fidelity Prototype.
+* Can have Mock APIs and Mock Data.
+* No need to connect to a real Database yet.
+* No need for real Authentication yet.
+* However, the code structure must be ready to be extended for Production in the future.
+
+## 4. Theme and Design System
+* **Mood & Tone:** Modern, Minimal (try to make it as Minimal as possible, do not focus on too much blur or glowing effects, keep it balanced), Productivity App.
+* **Color Palette:**
+  * **Primary:** Deep Black, Dark Gray, Midnight Purple
+  * **Secondary:** Indigo, Lavender
+  * **Accent:** Orange (#FF8A00)
+  * Use orange for CTA Buttons, Charts, Achievements, Notifications.
+* **Background:** Gradient (Black → Midnight Purple → Indigo) with a subtle Glow Effect.
+* **UI Style:** Glassmorphism, Rounded Corners, Floating Cards, Soft Shadows, Smooth Animation, Framer Motion.
+* **User Flow:** Enter the home page and see a Map to select the area to study (which are real-world locations) -> Select Session time and start the reading Session -> Accumulate time, can select Focus mode -> Gain Influence -> Conquer territory -> Earn Achievement -> Compete with friends on the Leaderboard.
+* Users must understand this concept within the first 5 seconds.
+* For each Menu, primarily use a Bottom Menu Bar with the following menus: `[Home, Leaderboard, History, Achievements, Avatar]`.
+
+## 5. Pop up profile & Access
+* Display the latest day's study summary, e.g., how many hours studied, whether any territory was conquered.
+* Create a Mockup asking for location (GPS) access permissions, making it look like an iPhone's prompt.
+
+## 6. Daily Goal Widget
+* Can set goals: 1 hour, 2 hours, 3 hours, Custom.
+* Display in a Circular Progress format.
+* Example: 2h 15m / 3h (also show it as a %).
+* When the goal is successfully met, display a Celebration Animation.
+
+## 7. Session Timer System
+* **Preset:** 15 minutes, 30 minutes, 45 minutes, 60 minutes.
+* **Controls:** Start, Stop, Focus Mode.
+* Has an "Enter Focus Mode" button (opens Fullscreen to reduce distractions, will be selectable on the Focus mode page).
+
+## 8. Session Complete Popup
+* When the time is up, display a Modal: "How focused were you today?"
+* Allow selecting a Rating in a star format (⭐⭐⭐⭐⭐ 1-5 stars) and save the data in a Mock State.
+
+---
+
+### System Subjects
+
+## 9. Subject Categories
+* **Examples:** Mathematics, Physics, Chemistry, Biology, English, Programming, TPAT3, TGAT.
+* Every Session does not require selecting a subject; users can add information later about what subject they studied during that time. More than one subject can be selected.
+
+## 10. Territory Map (Most Important Feature)
+Design a 2D Interactive map inspired by:
+* King of the Hill
+* Electoral Map
+* Risk
+* Civilization
+
+*Reference UI is similar to an Election Map.*
+
+## 11. Map Features
+* Divided into multiple zones based on Co-working spaces.
+* Each Co-working space has an owner.
+* There are owner-specific colors across the Co-working areas.
+* Has Hover Effect.
+* Has Zoom Animation.
+* Has Ownership Animation.
+
+## 12. Territory Data
+When clicking an area, display:
+* Area Name
+* Area Owner
+* Influence Score
+* Accumulated Study Time
+* Popular Subjects
+
+## 13. Territory Conquest Logic & Prototype Logic
+* Displayed as the total accumulated study time.
+
+## 14. Map Pins Support
+Design and implement a 2D Interactive Map for the `readdiva.in.th` prototype using real-world geography of Bangkok, Thailand. The map must use React Leaflet or Mapbox GL JS and strictly follow the 'Election Map' gamification concept:
+* **Base Map Customization (Default Area):** Use a highly customized, minimalist map style. Strip away all default colors, terrain details, and minor roads. The landmass of Bangkok should be clean white or very light gray. Major roads or district borders can be extremely faint just to provide basic geographical context.
+* **Real-world Coordinates & Unclaimed Zones:** Use actual Latitude/Longitude data for real cafes and co-working spaces in Bangkok (e.g., Siam, Samyan areas). Unclaimed locations are displayed only as modern 'Map Pins' on the white background, with no background highlight color, indicating they are open for conquest.
+* **Conquered Zones (GeoJSON Polygons):** For locations where a user is Top 1, display a 'Map Pin containing the conqueror's icon'. Surround the pin with a dynamically generated GeoJSON polygon (representing the territory's radius or district) and fill it with the Top 1 user's signature color. This must look like an electoral district conquered by a specific party, contrasting beautifully against the white base map.
+
+## 15. Use Mock Locations
+When clicking a pin, display:
+* Location Name
+* Type
+* Popularity Score
+* Number of Sessions occurred in that location
+
+---
+
+## 16. Leaderboard Page
+* Design based on the attached Reference Dashboard. It looks similar to a Premium level study timer application.
+* **Tab Navigation:** Day, Week, Month, Trend.
+
+## 17. Calendar View
+* Display a monthly calendar and Highlight days with usage.
+* Another section is the Daily Summary which will display: Total Study Time, Max Focus Time, Start Time, End Time.
+* Has a Line Chart for comparing Today vs Yesterday.
+
+## 18. Donut Chart
+* Show Subject Distribution: Mathematics, Physics, English, TPAT3.
+
+## 19. Activity Distribution
+* Study, Other.
+
+## 20. Timeline Log Displays
+* Start Time, End Time, Duration, Subject.
+
+## 21. History Table (Timeline Format)
+In a Timeline format like the Study History reference image, the History table displays:
+* **Statistics Cards:** Today's study time, This week's study time, Current Streak, Current Rank, Number of territories conquered, Level.
+* Use Card Animation when loading the screen.
+* Subject
+* Duration
+* Date
+* Focus Rating
+* *Supports usage of: Search, Filter, Sort.*
+
+## 22. Leaderboard
+* **Tabs:** Daily, Weekly, Monthly.
+* **Displays:** Rank, Username, Study Hours, Territory Count, Streak.
+* **Top 3 display:** 🥇🥈🥉 with Animation.
+
+## 23. Avatar
+* A menu for creating a 2D Animal style Avatar.
+* There are 20 Mockups in total, which are 20 cute animals. In the Mockup, only 5 will be selectable at first, and the rest must be unlocked using Achievements or bought with money.
+* After selecting an animal, you can continue to dress it up (it is an animal that represents our character, which is the Avatar).
+
+## 24. Notification Center
+Mock Notifications. Examples:
+* 📚 1 hour left to reach the goal
+* 🔥 7 Day Streak
+* 🏆 Successfully conquered a new territory
+* ⚔️ Your territory is being challenged
+
+## 26. AFK Warning
+When the user leaves the screen, show a Popup: "Have you been away for too long?"
+**Buttons:**
+* Continue studying
+* Take a break (Will lose the accumulated time in that Session if currently timing a study session)
+
+## 27. Achievement System
+* **Badges:** First Hour, 7 Day Streak, 30 Day Streak, Mathematics Master, Territory King, Cafe Explorer.
+* Displayed in Animated Cards format.
+
+---
+
+## 28. Backend (Prototype)
+* Use FastAPI + Python.
+* Data Processing uses Pandas.
+* Simulate: Session History, Daily Aggregation, Weekly Aggregation, Subject Distribution, Study Statistics.
+
+## 29. API Endpoints
+* `/mock/dashboard`
+* `/mock/statistics`
+* `/mock/territories`
+* `/mock/leaderboard`
+* `/mock/history`
+* `/mock/notifications`
+
+*Send data as JSON to the Frontend and use entirely Mock Data.*
+
+## 30. Frontend Technology
+* Next.js, TypeScript, Tailwind CSS, Framer Motion, Recharts, React Leaflet or SVG Interactive Map.
+
+## 31. Things to Generate
+* Entire system Folder Structure
+* Frontend Code for every page
+* All Components
+* Mock API Backend
+* FastAPI Code
+* Pandas Data Aggregation
+* Mock JSON Data
+* Responsive Design
+* README
+* How to install and run the project
+
+## 32. The Most Important Things
+* Territory Map must be the Hero Feature of the system.
+* When opening the website, users must immediately understand: "The more you read, the more territories you can conquer."
+* Dashboard and Statistics must look Premium, on the same level as a real application.
+* Must be Mobile-first and Responsive (supports all screens).
+* UI must look ready for presenting to professors, committees, or at a Hackathon immediately.
+* Code must separate Components systematically and be ready for extending to Production level in the future.
+* Do not just create a Wireframe, but must create a High-Fidelity Interactive Prototype that looks like a real product.
+
+## 33. Location Details Popup & Local Room View Feature
+* **Location Modal:** When a user clicks on a specific territory or Map Pin, a Popup/Modal will appear containing the following details:
+  * **Co-Working Space Name:** Clearly display the name and type of the location.
+  * **Local Leaderboard:** As the user scrolls down, display the top-ranking users who have accumulated the most study time specifically in this location.
+  * **Sync Location Button:** A Call-to-Action (CTA) button allowing users to "Sync" or "Check-in" to confirm their virtual or physical presence in this space.
+* **Session Setup:** After clicking the Sync button, the standard Session Timer setup will appear, allowing the user to select their desired study duration (e.g., 15, 30, 45, 60 minutes).
+* **Local Mini-Map (Active Session View):**
+  * Once the session starts, instead of just showing a standard timer, the UI will transition into a "Mini-Map" or an isometric room view specific to that co-working space.
+  * This view will display the Avatars/Icons of other users who are currently studying in the same location at that moment (using Mock Data).
+  * **Objective:** To boost motivation by creating a sense of community and shared focus, letting users visually see that they are not studying alone.
