@@ -24,7 +24,7 @@ export default function FocusPage() {
   const [showGoalPicker, setShowGoalPicker] = useState(false);
   const [focusMode, setFocusMode] = useState(false);
 
-  const { formattedTime, state, progress, start, pause, resume, reset, setDuration } = useTimer(25);
+  const { formattedTime, state, progress, start, pause, resume, reset, setDuration } = useTimer(30);
 
   const isRunning = state === "running";
   const isPaused = state === "paused";

@@ -12,11 +12,15 @@ export default function SplashScreen({ onDone }: Props) {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    const t = setTimeout(() => {
+    let inner: ReturnType<typeof setTimeout>;
+    const outer = setTimeout(() => {
       setVisible(false);
-      setTimeout(onDone, 400);
+      inner = setTimeout(onDone, 400);
     }, 2600);
-    return () => clearTimeout(t);
+    return () => {
+      clearTimeout(outer);
+      clearTimeout(inner);
+    };
   }, [onDone]);
 
   return (

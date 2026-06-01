@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Flame, Bell, MapPin, Zap } from "lucide-react";
 import MobileShell from "@/components/layout/MobileShell";
@@ -13,32 +13,41 @@ import { CURRENT_USER, MOCK_NOTIFICATIONS } from "@/lib/mockData";
 
 export default function HomePage() {
   const [showSplash, setShowSplash] = useState(true);
+  const handleSplashDone = useCallback(() => setShowSplash(false), []);
   const [gpsGranted, setGpsGranted] = useState<boolean | null>(null);
   const [showGPS, setShowGPS] = useState(false);
   const [selectedTerritory, setSelectedTerritory] = useState<Territory | null>(null);
   const [showLocationModal, setShowLocationModal] = useState(false);
   const [showNotifDot, setShowNotifDot] = useState(true);
 
+  const LOCATION_KEY = "location_permission_v2";
+
   // Show GPS modal after splash
   useEffect(() => {
     if (showSplash) return;
-    const granted = localStorage.getItem("gps_granted");
-    if (!granted) {
+    const stored = localStorage.getItem(LOCATION_KEY);
+    if (!stored) {
       const t = setTimeout(() => setShowGPS(true), 400);
       return () => clearTimeout(t);
     } else {
-      setGpsGranted(true);
+      setGpsGranted(stored !== "denied");
     }
   }, [showSplash]);
 
-  const handleGPSAllow = () => {
-    localStorage.setItem("gps_granted", "true");
+  const handleGPSAlwaysAllow = () => {
+    localStorage.setItem(LOCATION_KEY, "always");
+    setGpsGranted(true);
+    setShowGPS(false);
+  };
+
+  const handleGPSWhileUsing = () => {
+    localStorage.setItem(LOCATION_KEY, "while_using");
     setGpsGranted(true);
     setShowGPS(false);
   };
 
   const handleGPSDeny = () => {
-    localStorage.setItem("gps_granted", "denied");
+    localStorage.setItem(LOCATION_KEY, "denied");
     setGpsGranted(false);
     setShowGPS(false);
   };
@@ -59,12 +68,13 @@ export default function HomePage() {
   return (
     <MobileShell fullHeight>
       {/* Splash Screen */}
-      <SplashScreen onDone={() => setShowSplash(false)} />
+      <SplashScreen onDone={handleSplashDone} />
 
       {/* GPS Modal */}
       <GPSPermissionModal
         open={showGPS}
-        onAllow={handleGPSAllow}
+        onAlwaysAllow={handleGPSAlwaysAllow}
+        onWhileUsing={handleGPSWhileUsing}
         onDeny={handleGPSDeny}
       />
 
